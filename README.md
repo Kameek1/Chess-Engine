@@ -8,4 +8,5 @@ First actual project
 
 ## Current
 
- - Nothing
+ - board and piece representation and visualisation
+ - no movement yet
