@@ -9,4 +9,4 @@ First actual project
 ## Current
 
  - board and piece representation and visualisation
- - no movement yet
+ - some basic pawn movement
