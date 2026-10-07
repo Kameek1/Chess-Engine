@@ -1,4 +1,5 @@
 from game.pieces import Piece
+from game.movement import pawn_movement
 
 class Board:
     def __init__(self):
@@ -12,3 +13,5 @@ class Board:
             self.squares[7][i] = Piece("White", back_rank[i])
         self.squares[1] = [Piece("Black", "Pawn") for i in range(8)]
         self.squares[6] = [Piece("White", "Pawn") for i in range(8)]
+
+
