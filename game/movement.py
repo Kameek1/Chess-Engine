@@ -137,3 +137,16 @@ def king_legal_moves(board, i, j):
                         if board.squares[r][c] == None or board.squares[r][c].color != color:
                             legal_moves.append((r, c))
     return(legal_moves)
+
+def knight_legal_moves(board, i, j):
+    legal_moves = []
+    if board.squares[i][j] != None:
+        if board.squares[i][j].type == "Knight":
+            color = board.squares[i][j].color
+            knight_moves = [(i-2, j-1), (i-2, j+1), (i-1, j-2), (i-1, j+2),
+                            (i+1, j-2), (i+1, j+2), (i+2, j-1), (i+2, j+1)]
+            for r, c in knight_moves:
+                if 0 <= r < 8 and 0 <= c < 8:
+                    if board.squares[r][c] == None or board.squares[r][c].color != color:
+                        legal_moves.append((r, c))
+    return(legal_moves)
