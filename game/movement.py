@@ -116,4 +116,24 @@ def bishop_legal_moves(board, i, j):
                 else:
                     break
     return(legal_moves)
-            
+
+def queen_legal_moves(board, i, j):
+    legal_moves = []
+    if board.squares[i][j] != None:
+        if board.squares[i][j].type == "Queen":
+            color = board.squares[i][j].color
+            legal_moves.extend(rook_legal_moves(board, i, j))
+            legal_moves.extend(bishop_legal_moves(board, i, j))
+    return(legal_moves)
+
+def king_legal_moves(board, i, j):
+    legal_moves = []
+    if board.squares[i][j] != None:
+        if board.squares[i][j].type == "King":
+            color = board.squares[i][j].color
+            for r in range(i-1, i+2):
+                for c in range(j-1, j+2):
+                    if 0 <= r < 8 and 0 <= c < 8:
+                        if board.squares[r][c] == None or board.squares[r][c].color != color:
+                            legal_moves.append((r, c))
+    return(legal_moves)
