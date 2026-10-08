@@ -122,8 +122,39 @@ def queen_legal_moves(board, i, j):
     if board.squares[i][j] != None:
         if board.squares[i][j].type == "Queen":
             color = board.squares[i][j].color
-            legal_moves.extend(rook_legal_moves(board, i, j))
-            legal_moves.extend(bishop_legal_moves(board, i, j))
+            for l, r in zip(range(i-1, -1, -1,), range(j-1, -1, -1)):
+                if board.squares[l][r] == None:
+                    legal_moves.append((l, r))
+                elif board.squares[l][r].color != color:
+                    legal_moves.append((l, r))
+                    break
+                else:
+                    break
+            for l, r in zip(range(i-1, -1, -1), range(j+1, 8)):
+                if board.squares[l][r] == None:
+                    legal_moves.append((l, r))
+                elif board.squares[l][r].color != color:
+                    legal_moves.append((l, r))
+                    break
+                else:
+                    break
+            for l, r in zip(range(i+1, 8), range(j-1, -1, -1)):
+                if board.squares[l][r] == None:
+                    legal_moves.append((l, r))
+                elif board.squares[l][r].color != color:
+                    legal_moves.append((l, r))
+                    break
+                else:
+                    break
+            for l, r in zip(range(i+1, 8), range(j+1, 8)):
+                if board.squares[l][r] == None:
+                    legal_moves.append((l, r))
+                elif board.squares[l][r].color != color:
+                    legal_moves.append((l, r))
+                    break
+                else:
+                    break
+                
     return(legal_moves)
 
 def king_legal_moves(board, i, j):
@@ -133,7 +164,7 @@ def king_legal_moves(board, i, j):
             color = board.squares[i][j].color
             for r in range(i-1, i+2):
                 for c in range(j-1, j+2):
-                    if 0 <= r < 8 and 0 <= c < 8:
+                    if 0 <= r < 8 and 0 <= c < 8 and (r, c) != (i, j):
                         if board.squares[r][c] == None or board.squares[r][c].color != color:
                             legal_moves.append((r, c))
     return(legal_moves)

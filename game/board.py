@@ -1,5 +1,10 @@
 from game.pieces import Piece
 from game.movement import pawn_legal_moves
+from game.movement import queen_legal_moves
+from game.movement import bishop_legal_moves
+from game.movement import rook_legal_moves
+from game.movement import king_legal_moves
+from game.movement import knight_legal_moves
 
 class Board:
     def __init__(self):
@@ -14,15 +19,35 @@ class Board:
         self.squares[1] = [Piece("Black", "Pawn") for i in range(8)]
         self.squares[6] = [Piece("White", "Pawn") for i in range(8)]
 
-def pawn_move(board, a, b, i, j):
-    legal_moves = pawn_legal_moves(board, a, b)
-    if (i, j) in legal_moves:
-        board.squares[i][j] = Piece(board.squares[a][b].type, "Pawn")
-        board.squares[a][b] = None
-        
-
-    else:
-        return("This is not a legal move")
 
 
 
+def move(board, start: tuple, end: tuple):
+    a, b = start
+    c, d = end
+
+
+    if board.squares[a][b].type == "Pawn":
+        if (c, d) in pawn_legal_moves(board, a, b):
+            board.squares[c][d] = board.squares[a][b]
+            board.squares[a][b] = None
+    elif board.squares[a][b].type == "Rook":
+        if (c, d) in rook_legal_moves(board, a, b):
+            board.squares[c][d] = board.squares[a][b]
+            board.squares[a][b] = None
+    elif board.squares[a][b].type == "Bishop":
+        if (c, d) in bishop_legal_moves(board, a, b):
+            board.squares[c][d] = board.squares[a][b]
+            board.squares[a][b] = None
+    elif board.squares[a][b].type == "Queen":
+        if (c, d) in queen_legal_moves(board, a, b):
+            board.squares[c][d] = board.squares[a][b]
+            board.squares[a][b] = None
+    elif board.squares[a][b].type == "King":
+        if (c, d) in king_legal_moves(board, a, b):
+            board.squares[c][d] = board.squares[a][b]
+            board.squares[a][b] = None
+    elif board.squares[a][b].type == "Knight":
+        if (c, d) in knight_legal_moves(board, a, b):
+            board.squares[c][d] = board.squares[a][b]
+            board.suqares[a][b] = None

@@ -1,23 +1,31 @@
 from game.visuals import visuals
 from game.board import Board
-from game.board import pawn_move
+from game.board import move
 
+def user_input():
+    print("Which piece will you move?")
+    piece = tuple(map(int, input().split()))
+    print("where will you move it")
+    move = tuple(map(int, input().split()))
+
+    return((piece, move))
 
 def main():
     board = Board()
     print(visuals(board))
 
-    print("Which pawn will you move?")
+    for i in range(100):
+        start, end = user_input()
 
-    a, b = map(int, input().split())
-    print("to where?")
-    i, j = map(int, input().split())
+        move(board, start, end)
+        print(visuals(board))
 
-    pawn_move(board, a, b, i, j)
 
-    print(visuals(board))
 
-    
 
 if __name__ == "__main__":
     main()
+
+
+
+
