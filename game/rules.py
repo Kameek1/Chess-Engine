@@ -56,7 +56,7 @@ def all_legal_moves(board, color):
         i, j = piece
         for moves in pieces_movement[board.squares[i][j].type](board, i, j):
             a, b = moves
-            piece = board.squares[a][b]
+            captured_piece = board.squares[a][b]
             board.squares[a][b] = board.squares[i][j]
             board.squares[i][j] = None
             if not is_king_in_check(board, color):
@@ -64,7 +64,7 @@ def all_legal_moves(board, color):
             
             
             board.squares[i][j] = board.squares[a][b]
-            board.squares[a][b] = piece
+            board.squares[a][b] = captured_piece
     return(legal_moves)
 
 
