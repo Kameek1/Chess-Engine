@@ -1,6 +1,6 @@
 from game.board import Board
 
-def visuals(B):
+def visuals(board):
     symbols = {
 
         "Pawn": "P",
@@ -12,10 +12,13 @@ def visuals(B):
     }
 
     rows = []
-
-    for i in B.squares:
-        cells = []
+    row = 8
+    for i in board.squares:
+        cells = [str(row)]
+        row-=1
+        
         for j in i:
+            
             if j == None:
                 cells.append(".")
             else:
@@ -26,6 +29,8 @@ def visuals(B):
 
         
         rows.append(" ".join(cells))
+    
+    rows.append("  a b c d e f g h")
 
 
     return("\n".join(rows))

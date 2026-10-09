@@ -24,12 +24,14 @@ def main():
 
         move(board, start, end)
         i, j = end
-        if board.squares[i][j].color == "White":
-            color = "Black"
-        else:
-            color = "White"
-        checkmate_stalemate(board, color)
+        if board.squares[i][j]!= None:
+            if board.squares[i][j].color == "White":
+                color = "Black"
+            else:
+                color = "White"
+        
         print(visuals(board))
+        checkmate_stalemate(board, color)
         
         
 
