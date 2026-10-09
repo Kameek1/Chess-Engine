@@ -5,7 +5,7 @@ from game.movement import bishop_legal_moves
 from game.movement import rook_legal_moves
 from game.movement import king_legal_moves
 from game.movement import knight_legal_moves
-
+from game.rules import is_king_in_check
 class Board:
     def __init__(self):
         self.squares = [[None for i in range(8)] for i in range(8)]

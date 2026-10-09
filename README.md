@@ -10,3 +10,4 @@ First actual project
 
  - board and piece representation and visualisation
  - basic pseudo movement of all pieces
+ - king check detection
