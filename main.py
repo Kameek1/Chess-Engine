@@ -1,12 +1,16 @@
 from game.visuals import visuals
 from game.board import Board
 from game.board import move
+from game.visuals import square_name
+
+
 
 def user_input():
     print("Which piece will you move?")
-    piece = tuple(map(int, input().split()))
+    piece = square_name(input())
+    
     print("where will you move it")
-    move = tuple(map(int, input().split()))
+    move = square_name(input())
 
     return((piece, move))
 

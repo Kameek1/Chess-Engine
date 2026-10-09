@@ -29,3 +29,9 @@ def visuals(B):
 
 
     return("\n".join(rows))
+
+def square_name(square:str):
+    col = ord(square[0]) - ord("a")
+    row = 8 - int(square[1])
+
+    return (row, col)
