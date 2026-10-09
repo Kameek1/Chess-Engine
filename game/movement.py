@@ -43,6 +43,7 @@ def pawn_legal_attacks(board, i, j):
                     legal_moves.append((i+1,j-1))
                 if j<7 and board.squares[i+1][j+1] != None and board.squares[i+1][j+1].color == "White" :
                     legal_moves.append((i+1,j+1))
+    return(legal_moves)
 def rook_legal_moves(board, i, j):
     legal_moves = []
 
@@ -163,6 +164,40 @@ def queen_legal_moves(board, i, j):
                     break
                 else:
                     break
+            for r in range(i-1, -1, -1):
+                if board.squares[r][j] == None:
+                    legal_moves.append((r, j))
+                elif board.squares[r][j].color != color:
+                    legal_moves.append((r, j))
+                    break
+                else:
+                    break
+            
+            for r in range(i+1, 8): 
+                if board.squares[r][j] == None:
+                    legal_moves.append((r, j))
+                elif board.squares[r][j].color != color:
+                    legal_moves.append((r, j))
+                    break
+                else:
+                    break
+            for c in range(j-1, -1, -1):
+                if board.squares[i][c] == None:
+                    legal_moves.append((i, c))
+                elif board.squares[i][c].color != color:
+                    legal_moves.append((i, c))
+                    break
+                else:
+                    break
+            for c in range(j+1, 8):
+                if board.squares[i][c] == None:
+                    legal_moves.append((i, c))
+                elif board.squares[i][c].color != color:
+                    legal_moves.append((i, c))
+                    break
+                else:
+                    break
+            
                 
     return(legal_moves)
 
