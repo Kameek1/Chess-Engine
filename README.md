@@ -9,5 +9,6 @@ First actual project
 ## Current
 
  - board and piece representation and visualisation
- - basic pseudo movement of all pieces
- - king check detection
+ - basic pseudo movement legality of all pieces
+ - basic movement of all pieces
+ 

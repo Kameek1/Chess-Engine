@@ -6,6 +6,7 @@ from game.movement import king_legal_moves
 from game.movement import rook_legal_moves
 from game.movement import king_legal_moves
 from game.movement import pawn_legal_moves
+from game.board import move
 
 
 def is_king_in_check(board, color):
@@ -53,10 +54,22 @@ def all_legal_moves(board, color):
                 curr_pieces.append((i, j))
     for piece in curr_pieces:
         i, j = piece
-        for p, m in pieces_movement.items():
-            if board.squares[i][j].type == p:
-                legal_moves.extend(m(board, i, j))
-    return legal_moves
+        for moves in pieces_movement[board.squares[i][j].type](board, i, j):
+            a, b = moves
+            piece = board.squares[a][b]
+            board.squares[a][b] = board.squares[i][j]
+            board.squares[i][j] = None
+            if not is_king_in_check(board, color):
+                legal_moves.append(((i,j),moves))
+            
+            
+            board.squares[i][j] = board.squares[a][b]
+            board.squares[a][b] = piece
+    return(legal_moves)
+
+
+
+    
                 
 
 

@@ -5,8 +5,7 @@ from game.movement import bishop_legal_moves
 from game.movement import rook_legal_moves
 from game.movement import king_legal_moves
 from game.movement import knight_legal_moves
-from game.movement import pawn_legal_attacks
-from game.rules import is_king_in_check
+
 class Board:
     def __init__(self):
         self.squares = [[None for i in range(8)] for i in range(8)]
@@ -32,9 +31,6 @@ def move(board, start: tuple, end: tuple):
         if (c, d) in pawn_legal_moves(board, a, b):
             board.squares[c][d] = board.squares[a][b]
             board.squares[a][b] = None
-        elif (c, d) in pawn_legal_attacks(board, a, b):
-            board.squares[c][d] = board.squares[a][b]
-            board.squares[a][b] = None
     elif board.squares[a][b].type == "Rook":
         if (c, d) in rook_legal_moves(board, a, b):
             board.squares[c][d] = board.squares[a][b]
@@ -55,11 +51,3 @@ def move(board, start: tuple, end: tuple):
         if (c, d) in knight_legal_moves(board, a, b):
             board.squares[c][d] = board.squares[a][b]
             board.squares[a][b] = None
-    else:
-        print("This is an invalid move")
-        return
-
-    if is_king_in_check(board, board.squares[c][d].color):
-        board.squares[a][b] = board.squares[c][d]
-        board.squares[c][d] = None
-        print("This leaves the king in check")
