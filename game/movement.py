@@ -13,6 +13,10 @@ def pawn_legal_moves(board, i, j):
 
                 if i > 0 and board.squares[i-1][j] == None:
                     legal_moves.append((i-1, j))
+                if j>0 and board.squares[i-1][j-1] != None and board.squares[i-1][j-1].color == "Black" :
+                    legal_moves.append((i-1, j-1))
+                if j<7 and board.squares[i-1][j+1] != None and board.squares[i-1][j+1].color == "Black":
+                    legal_moves.append((i-1, j+1))
 
             else:
                 if i == 1:
@@ -21,6 +25,10 @@ def pawn_legal_moves(board, i, j):
                 
                 if board.squares[i+1][j] == None:
                     legal_moves.append((i+1,j))
+                if j>0 and board.squares[i+1][j-1] != None and board.squares[i+1][j-1].color == "White" :
+                    legal_moves.append((i+1,j-1))
+                if j<7 and board.squares[i+1][j+1] != None and board.squares[i+1][j+1].color == "White" :
+                    legal_moves.append((i+1,j+1))
                 
 
     return(legal_moves)

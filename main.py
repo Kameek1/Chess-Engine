@@ -2,6 +2,7 @@ from game.visuals import visuals
 from game.board import Board
 from game.board import move
 from game.visuals import square_name
+from game.rules import checkmate_stalemate
 
 
 
@@ -22,7 +23,12 @@ def main():
         start, end = user_input()
 
         move(board, start, end)
+        i, j = end
+        color = board.squares[i][j].color
+        checkmate_stalemate(board, color)
         print(visuals(board))
+        
+        
 
 
 
