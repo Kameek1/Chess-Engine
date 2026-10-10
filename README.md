@@ -2,13 +2,20 @@ First actual project
 
 ## Planned
 
- - Playable chess board with move legality detection and whatnot
+ 
  - Basic chess computer(Random moves or similarly basic engine)
  - More complex computer
 
-## Current
+## Already built
 
  - board and piece representation and visualisation
  - basic pseudo movement legality of all pieces
  - basic movement of all pieces
+ - more complex movement legality, including checkmate, pawn promotion, pin piece behavior etc. 
+
+ ## RN
+ 
+ - castling and en passant
+ - cleaning up code before starting computer
+ 
  
