@@ -1,5 +1,6 @@
 from game.pieces import Piece
 from game.rules import all_legal_moves
+from game.rules import pawn_promotion
 
 class Board:
     def __init__(self):
@@ -15,20 +16,27 @@ class Board:
         self.squares[1] = [Piece("Black", "Pawn") for i in range(8)]
         self.squares[6] = [Piece("White", "Pawn") for i in range(8)]
 
+def make_move(board, start:tuple, end: tuple):
+    a, b = start
+    c, d = end
+    
+    board.squares[c][d] = board.squares[a][b]
+    board.squares[a][b] = None
+    board.squares[c][d].has_moved = True
 
+    pawn_promotion(board, (c, d))
+
+ 
 
 
 def move(board, start: tuple, end: tuple):
     a, b = start
     c, d = end
-
     if board.squares[a][b] is not None:
         if board.turn == board.squares[a][b].color:
            
             if ((start, end) in all_legal_moves(board, board.squares[a][b].color)):
-                board.squares[c][d] = board.squares[a][b]
-                board.squares[a][b] = None
-                board.squares[c][d].has_moved = True
+                make_move(board, start, end)
                 if board.turn == "White":
                     board.turn = "Black"
                 else:
