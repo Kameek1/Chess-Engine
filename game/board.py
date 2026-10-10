@@ -1,13 +1,9 @@
 from game.pieces import Piece
-from game.movement import pawn_legal_moves
-from game.movement import queen_legal_moves
-from game.movement import bishop_legal_moves
-from game.movement import rook_legal_moves
-from game.movement import king_legal_moves
-from game.movement import knight_legal_moves
+from game.rules import all_legal_moves
 
 class Board:
     def __init__(self):
+        self.turn = "White"
         self.squares = [[None for i in range(8)] for i in range(8)]
         self.starting_position()
     def starting_position(self):
@@ -26,28 +22,20 @@ def move(board, start: tuple, end: tuple):
     a, b = start
     c, d = end
 
-
-    if board.squares[a][b].type == "Pawn":
-        if (c, d) in pawn_legal_moves(board, a, b):
-            board.squares[c][d] = board.squares[a][b]
-            board.squares[a][b] = None
-    elif board.squares[a][b].type == "Rook":
-        if (c, d) in rook_legal_moves(board, a, b):
-            board.squares[c][d] = board.squares[a][b]
-            board.squares[a][b] = None
-    elif board.squares[a][b].type == "Bishop":
-        if (c, d) in bishop_legal_moves(board, a, b):
-            board.squares[c][d] = board.squares[a][b]
-            board.squares[a][b] = None
-    elif board.squares[a][b].type == "Queen":
-        if (c, d) in queen_legal_moves(board, a, b):
-            board.squares[c][d] = board.squares[a][b]
-            board.squares[a][b] = None
-    elif board.squares[a][b].type == "King":
-        if (c, d) in king_legal_moves(board, a, b):
-            board.squares[c][d] = board.squares[a][b]
-            board.squares[a][b] = None
-    elif board.squares[a][b].type == "Knight":
-        if (c, d) in knight_legal_moves(board, a, b):
-            board.squares[c][d] = board.squares[a][b]
-            board.squares[a][b] = None
+    if board.squares[a][b] is not None:
+        if board.turn == board.squares[a][b].color:
+           
+            if ((start, end) in all_legal_moves(board, board.squares[a][b].color)):
+                board.squares[c][d] = board.squares[a][b]
+                board.squares[a][b] = None
+                board.squares[c][d].has_moved = True
+                if board.turn == "White":
+                    board.turn = "Black"
+                else:
+                    board.turn = "White" 
+            else:
+                print("Illegal move")
+        else:
+            print("Not your turn")
+    else:
+        print("No piece on that square")

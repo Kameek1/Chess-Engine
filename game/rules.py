@@ -6,7 +6,7 @@ from game.movement import king_legal_moves
 from game.movement import rook_legal_moves
 from game.movement import king_legal_moves
 from game.movement import pawn_legal_moves
-from game.board import move
+
 
 
 def is_king_in_check(board, color):
@@ -82,6 +82,9 @@ def checkmate_stalemate(board, color):
             print("Stalemate")
     return
 
+def pawn_promotion(board, position, new_piece):
+    i, j = position
+    if board.squares[i][j] is not None and board.squares[i][j].type == "Pawn":
+        if (board.squares[i][j].color == "White" and i == 0) or (board.squares[i][j].color == "Black" and i == 7):
+            board.squares[i][j].type = new_piece
 
-
-    
