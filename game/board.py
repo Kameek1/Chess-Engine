@@ -1,6 +1,7 @@
 from game.pieces import Piece
 from game.rules import all_legal_moves
 from game.rules import pawn_promotion
+from game.rules import can_castle 
 
 class Board:
     def __init__(self):

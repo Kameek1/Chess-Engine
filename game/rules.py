@@ -69,6 +69,7 @@ def all_legal_moves(board, color):
             
             board.squares[i][j] = board.squares[a][b]
             board.squares[a][b] = captured_piece
+    
     return(legal_moves)
 
 
@@ -107,3 +108,26 @@ def pawn_promotion(board, square):
                     user_piece = input()
                     board.squares[i][j] = piece_promotion[user_piece]
 
+def can_castle(board, square):
+    side = [False, False]
+    i, j = square
+    if board.squares[i][j] is not None:
+        color = board.squares[i][j].color
+    if board.squares[i][j] is not None and board.squares[i][j].type == "King":
+        if board.squares[i][j].has_moved == False and is_square_attacked(board, color, (i, j)) == False:
+            if board.squares[i][j-1] == None and is_square_attacked(board, color, (i, j-1)) == False:
+                if board.squares[i][j-2] == None and is_square_attacked(board, color, (i, j-2)) == False:
+                    if board.squares[i][j-3] == None:
+                        if board.squares[i][j-4].has_moved == False:
+                            side[0] = True
+            if board.squares[i][j+1] == None and is_square_attacked(board, color, (i, j+1)) == False:
+                if board.squares[i][j+2] == None and is_square_attacked(board, color, (i, j+2)) == False:
+                    if board.squares[i][j+3].has_moved == False:
+                        side[1] = True
+
+
+
+
+
+
+    return(side)
