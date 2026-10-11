@@ -6,6 +6,7 @@ from game.rules import can_castle
 class Board:
     def __init__(self):
         self.turn = "White"
+        self.move_history = []
         self.squares = [[None for i in range(8)] for i in range(8)]
         self.starting_position()
     def starting_position(self):
@@ -24,6 +25,7 @@ def make_move(board, start:tuple, end: tuple):
     board.squares[c][d] = board.squares[a][b]
     board.squares[a][b] = None
     board.squares[c][d].has_moved = True
+    board.move_history.append(((a, b), (c, d)))
 
     pawn_promotion(board, (c, d))
 
